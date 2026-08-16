@@ -7,7 +7,7 @@
     "dev": "node server.js",
     "start": "node server.js",
     "frontend:dev": "pnpm --filter @gridsense/frontend dev",
-    "frontend:build": "pnpm --filter @gridsense/frontend build",
+    "frontend:build": "NODE_ENV=production pnpm --filter @gridsense/frontend build",
     "backend:dev": "python3 -m uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000"
   },
   "engines": {
