@@ -1,0 +1,25 @@
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: gridsense
+      POSTGRES_USER: gridsense
+      POSTGRES_PASSWORD: gridsense
+    ports:
+      - "5432:5432"
+    volumes:
+      - gridsense-postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://gridsense:gridsense@database:5432/gridsense
+      APP_ENV: development
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+
+volumes:
+  gridsense-postgres-data:

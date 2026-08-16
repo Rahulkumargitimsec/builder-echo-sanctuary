@@ -2,10 +2,13 @@
   "name": "gridsense-ai",
   "version": "1.0.0",
   "private": true,
-  "description": "GridSense AI development plan download page",
+  "description": "GridSense AI workspace and development plan download page",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "frontend:dev": "pnpm --filter @gridsense/frontend dev",
+    "frontend:build": "pnpm --filter @gridsense/frontend build",
+    "backend:dev": "python3 -m uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000"
   },
   "engines": {
     "node": ">=18"
