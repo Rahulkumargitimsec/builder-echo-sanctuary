@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridSense AI — Development Plan</title>
+<style>
+@page { size: A4; margin: 18mm 16mm 18mm; }
+:root { --navy: #102a43; --blue: #1d4ed8; --ink: #243b53; --muted: #627d98; --line: #d9e2ec; --wash: #f0f6ff; }
+* { box-sizing: border-box; }
+body { color: var(--ink); font: 10.5pt/1.5 Arial, sans-serif; margin: 0; }
+h1 { color: var(--navy); font-size: 28pt; line-height: 1.08; margin: 0 0 8pt; }
+h2 { border-bottom: 2px solid var(--blue); color: var(--navy); font-size: 17pt; margin: 22pt 0 8pt; padding-bottom: 4pt; page-break-after: avoid; }
+h3 { color: var(--blue); font-size: 12pt; margin: 12pt 0 4pt; page-break-after: avoid; }
+p { margin: 5pt 0 8pt; }
+ul, ol { margin: 4pt 0 9pt 18pt; padding: 0; }
+li { margin: 2pt 0; }
+.cover { background: linear-gradient(135deg, #eaf2ff, #ffffff); border-left: 8px solid var(--blue); margin: -18mm -16mm 20pt; min-height: 250pt; padding: 60pt 42pt 42pt; }
+.subtitle { color: var(--blue); font-size: 15pt; font-weight: bold; margin-bottom: 18pt; }
+.meta { color: var(--muted); font-size: 10pt; }
+.callout { background: var(--wash); border: 1px solid #bfdbfe; border-radius: 6pt; margin: 10pt 0; padding: 10pt 12pt; }
+.phase { page-break-inside: avoid; }
+.label { color: var(--muted); font-size: 8.5pt; font-weight: bold; letter-spacing: .5pt; text-transform: uppercase; }
+code, pre { font-family: "Courier New", monospace; }
+pre { background: #f5f7fa; border: 1px solid var(--line); border-radius: 4pt; padding: 8pt; white-space: pre-wrap; }
+table { border-collapse: collapse; margin: 8pt 0 12pt; width: 100%; }
+th { background: var(--navy); color: white; text-align: left; }
+th, td { border: 1px solid var(--line); padding: 6pt 7pt; vertical-align: top; }
+tr { page-break-inside: avoid; }
+.footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 8pt; margin-top: 24pt; padding-top: 6pt; }
+</style>
+</head>
+<body>
+<section class="cover">
+<div class="label">Enterprise Product Development Roadmap</div>
+<h1>GridSense AI</h1>
+<div class="subtitle">Intelligent Electricity Demand &amp; Peak Load Forecasting System for Delhi Power Grid</div>
+<p>Phased implementation plan for forecasting hourly demand, predicting peak load and timing, explaining AI predictions, recommending load reduction and power purchases, and supporting research publication.</p>
+<p class="meta">Technology direction: Next.js, React, TypeScript, Tailwind CSS, FastAPI, PostgreSQL, SQLAlchemy, JWT/RBAC, TensorFlow, PyTorch, scikit-learn, XGBoost, SHAP, Docker, NGINX, and AWS.</p>
+</section>
+
+<div class="callout"><strong>Current prerequisite:</strong> The repository is currently empty and <code>pnpm install</code> fails because no <code>package.json</code> exists. Restore the intended repository contents or create the initial scaffold before starting feature development.</div>
+
+<h2>Roadmap at a Glance</h2>
+<table>
+<tr><th>Phase</th><th>Focus</th><th>Primary outcome</th></tr>
+<tr><td>0</td><td>Project recovery</td><td>Runnable frontend and backend workspace</td></tr>
+<tr><td>1</td><td>Architecture and UX</td><td>Approved routes, roles, and design system</td></tr>
+<tr><td>2</td><td>Authentication</td><td>Secure login and role-based access</td></tr>
+<tr><td>3</td><td>Backend and database</td><td>Versioned API and PostgreSQL foundation</td></tr>
+<tr><td>4</td><td>Dataset management</td><td>Validated, versioned load and weather data</td></tr>
+<tr><td>5</td><td>Baseline forecasting</td><td>First reliable hourly forecast product</td></tr>
+<tr><td>6</td><td>Advanced AI models</td><td>Transformer, LSTM, and XGBoost ensemble</td></tr>
+<tr><td>7</td><td>Dashboard and forecast UX</td><td>Operational monitoring and forecast workflows</td></tr>
+<tr><td>8</td><td>Peak prediction and alerts</td><td>Peak-risk monitoring and notifications</td></tr>
+<tr><td>9</td><td>Explainable AI</td><td>SHAP-based feature and prediction explanations</td></tr>
+<tr><td>10</td><td>Recommendations</td><td>Commercial load and power purchase actions</td></tr>
+<tr><td>11</td><td>Reports and research</td><td>Exports, analytics, and experiment comparison</td></tr>
+<tr><td>12</td><td>Administration and security</td><td>Enterprise controls and auditing</td></tr>
+<tr><td>13</td><td>Testing</td><td>Automated confidence across the system</td></tr>
+<tr><td>14</td><td>Deployment</td><td>Production-ready containers and operations</td></tr>
+</table>
+
+<div class="phase"><h2>Phase 0: Project Recovery and Workspace Setup</h2><p><strong>Objective:</strong> Restore or create the application foundation and make the development environment runnable.</p><h3>Deliverables</h3><ul><li><code>package.json</code> and pnpm workspace configuration</li><li>Next.js, TypeScript, Tailwind CSS, and component foundation</li><li>FastAPI backend and PostgreSQL configuration</li><li>Environment variable template and Docker Compose setup</li><li>Builder setup command: <code>pnpm install</code></li><li>Builder dev command: <code>pnpm dev</code></li></ul><pre>gridsense-ai/
+├── frontend/
+├── backend/
+├── ai/
+├── database/
+├── docker/
+├── tests/
+├── docker-compose.yml
+└── README.md</pre></div>
+
+<div class="phase"><h2>Phase 1: Product Architecture and UX Design</h2><p>Define the page map, user journeys, permissions, responsive layout, and visual system.</p><h3>Pages</h3><p>Landing, Login, Dashboard, Forecast, Peak Prediction, AI Explanation, Recommendations, Alerts, Analytics, Datasets, Model Training, Model Comparison, Research, Reports, Profile, Settings, and Admin Panel.</p><h3>Deliverables</h3><ul><li>Page and routing map</li><li>Role-permission matrix</li><li>Responsive application shell and sidebar</li><li>Design tokens and reusable cards, tables, charts, forms, modals, and alerts</li><li>Loading, empty, and error states</li></ul></div>
+
+<div class="phase"><h2>Phase 2: Landing Website and Authentication</h2><p>Build the public landing experience and secure user access.</p><h3>Landing sections</h3><p>Hero, Features, AI Engine, Technology, Architecture, Research, Contact, and Request Demo.</p><h3>Authentication deliverables</h3><ul><li>Login, logout, password hashing, JWT access tokens, and refresh-token handling</li><li>Protected routes and backend authorization</li><li>Role-based navigation for Super Admin, Grid Operator, and Research Analyst</li></ul><p><strong>Acceptance:</strong> Users can authenticate safely, protected pages reject unauthenticated access, and every role sees only permitted modules.</p></div>
+
+<div class="phase"><h2>Phase 3: Database and Backend Foundation</h2><p>Create the FastAPI service, PostgreSQL schema, migrations, and API contracts.</p><h3>Core tables</h3><p>Users, Roles, HistoricalLoad, Weather, Calendar, Predictions, Recommendations, Reports, Alerts, ResearchResults, and TrainingLogs.</p><h3>API groups</h3><pre>/api/auth
+/api/users
+/api/dashboard
+/api/forecast
+/api/peaks
+/api/explanations
+/api/recommendations
+/api/datasets
+/api/models
+/api/reports
+/api/research
+/api/alerts</pre><p>Use SQLAlchemy models, Pydantic schemas, service/repository layers, versioned APIs, structured errors, and audit logging.</p></div>
+
+<div class="phase"><h2>Phase 4: Dataset Management</h2><p>Build reliable ingestion for historical load, weather, calendar, holidays, festivals, and related predictors.</p><ul><li>CSV upload, preview, column mapping, and dataset versioning</li><li>Date/time, missing-value, duplicate, unit, and schema validation</li><li>Data-quality report and import history</li><li>Storage for historical load, temperature, rainfall, weekend, holiday, festival, previous-day, and previous-week features</li></ul><p><strong>Acceptance:</strong> Invalid datasets are rejected with clear messages; valid datasets can be stored, queried, and reviewed before training.</p></div>
+
+<div class="phase"><h2>Phase 5: Baseline Forecasting Pipeline</h2><p>Deliver a dependable forecasting product before adding complex deep-learning models.</p><pre>Historical Data → Cleaning → Feature Engineering → Train/Test Split → Baseline Model → Forecast → Evaluation</pre><h3>Initial models</h3><p>Persistence, moving average, linear regression, Random Forest, and XGBoost.</p><h3>Outputs and metrics</h3><p>Hourly demand, peak demand, peak timing, confidence score, forecast horizon, selected model, MAE, RMSE, MAPE, R², peak timing error, and peak magnitude error.</p></div>
+
+<div class="phase"><h2>Phase 6: Advanced AI Models</h2><p>Implement the hybrid architecture incrementally and keep each training run reproducible.</p><pre>Historical Load → Feature Engineering → Transformer → LSTM → XGBoost → Forecast Ensemble → SHAP → Recommendation Engine</pre><ul><li>Transformer for temporal patterns</li><li>LSTM for sequential dependencies</li><li>XGBoost for feature-based correction</li><li>Ensemble or stacking layer</li><li>Model versioning and artifact storage</li><li>Training date range, horizon, feature, and hyperparameter controls</li><li>Training progress, validation metrics, and deployment status</li></ul></div>
+
+<div class="phase"><h2>Phase 7: Dashboard and Forecast Experience</h2><p>Connect operational screens to backend APIs.</p><h3>Dashboard cards</h3><p>Current Load, Today’s Peak, Tomorrow’s Peak, Temperature, Rainfall, Prediction Accuracy, Confidence, Commercial Load, Active Alerts, and Recommendations.</p><h3>Charts and forecast workflow</h3><p>Hourly, weekly, monthly, and yearly demand; peak history; actual versus predicted load; confidence intervals; date, range, and model filters; hourly forecast table; peak details; and export action.</p><p><strong>Acceptance:</strong> Charts use API data, filters update results, and empty or failed responses are visible and understandable.</p></div>
+
+<div class="phase"><h2>Phase 8: Peak Prediction and Alerts</h2><p>Monitor peak-load risk and notify operators before critical periods.</p><ul><li>Today’s and tomorrow’s peak</li><li>Peak duration, timing, probability, and severity</li><li>High-demand, low-confidence, forecast-deviation, data-quality, and model-performance alerts</li><li>Severity, acknowledgement, filtering, history, and role-based visibility</li></ul></div>
+
+<div class="phase"><h2>Phase 9: Explainable AI</h2><p>Make each prediction understandable to grid operators and researchers.</p><ul><li>Global and per-prediction SHAP feature importance</li><li>Positive and negative feature effects</li><li>Natural-language explanation</li><li>Model explanation comparison</li><li>Impact of temperature, previous load, calendar, rainfall, festivals, and hour of day</li></ul><p><strong>Acceptance:</strong> Every forecast links to an explanation generated from the selected model and prediction.</p></div>
+
+<div class="phase"><h2>Phase 10: Recommendation Engine</h2><p>Convert forecasts into operational actions.</p><h3>Recommendation categories</h3><p>Commercial load reduction, power purchase planning, demand response, and peak management.</p><h3>Recommendation fields</h3><p>Priority, action, expected load reduction, expected savings, time window, confidence, reason, and status.</p><p>Identify high-demand windows, estimate controllable commercial load, recommend reduction periods, estimate savings, recommend additional power purchase, and track completion.</p></div>
+
+<div class="phase"><h2>Phase 11: Reports, Analytics, and Research</h2><ul><li>Daily demand, weekly forecast, monthly peak, model performance, savings, and data-quality reports</li><li>PDF, CSV, Excel-compatible, and JSON exports</li><li>Dataset versions, experiment history, model comparison, metrics, visualizations, reproducibility metadata, and research-result exports</li><li>Comparison of accuracy, training duration, inference time, peak accuracy, confidence, and SHAP results</li></ul></div>
+
+<div class="phase"><h2>Phase 12: Administration, Security, and Auditing</h2><ul><li>User management, role assignment, account activation, and deactivation</li><li>Dataset permissions, model deployment control, and system settings</li><li>Audit logs, training logs, and API activity logs</li><li>JWT expiration, backend authorization, input and upload validation, rate limiting, restricted CORS, secure secrets, safe logging, backups, and recovery</li></ul></div>
+
+<div class="phase"><h2>Phase 13: Testing and Quality Assurance</h2><h3>Test coverage</h3><ul><li>Frontend: components, validation, route protection, charts, and role navigation</li><li>Backend: authentication, RBAC, APIs, repositories, dataset validation, forecasting, and recommendations</li><li>AI: feature engineering, leakage prevention, output shapes, metrics, reproducibility, and SHAP</li><li>Integration: login to dashboard, upload to forecast, training to comparison, forecast to recommendation, and report generation</li></ul></div>
+
+<div class="phase"><h2>Phase 14: Deployment and Operations</h2><p>Prepare production deployment using containers and operational safeguards.</p><ul><li>Frontend and backend Dockerfiles</li><li>PostgreSQL container, NGINX reverse proxy, and production environment configuration</li><li>Health checks, migrations, logging, monitoring, backups, and recovery</li><li>CI/CD pipeline</li></ul><pre>Build → Run Tests → Build Docker Images → Apply Migrations → Deploy Backend → Deploy Frontend → Run Health Checks</pre></div>
+
+<h2>Recommended MVP Sequence</h2>
+<ol><li>Project setup</li><li>Authentication and RBAC</li><li>Database foundation</li><li>Dataset upload</li><li>Baseline forecasting</li><li>Dashboard</li><li>Peak prediction</li><li>Basic recommendations</li><li>Reports</li><li>Testing and deployment</li></ol>
+<p>After the MVP is stable, add the Transformer, LSTM, hybrid ensemble, SHAP explanations, advanced research tools, and automated power-purchase optimization.</p>
+
+<div class="footer">GridSense AI — Development Plan | Prepared from the supplied master prompt</div>
+</body>
+</html>
