@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GridSense AI Development Plan</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page-background: #eef4ff;
+      --panel-background: #ffffff;
+      --heading-color: #102a43;
+      --body-color: #486581;
+      --accent-color: #1d4ed8;
+      --accent-hover: #1e40af;
+      --border-color: #d9e2ec;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      align-items: center;
+      background: var(--page-background);
+      color: var(--body-color);
+      display: flex;
+      font-family: Arial, sans-serif;
+      justify-content: center;
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .download-panel {
+      background: var(--panel-background);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 18px 50px rgb(16 42 67 / 12%);
+      max-width: 620px;
+      padding: 48px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .brand-label {
+      color: var(--accent-color);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      color: var(--heading-color);
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    .page-description {
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 auto 28px;
+      max-width: 500px;
+    }
+
+    .download-button {
+      background: var(--accent-color);
+      border-radius: 10px;
+      color: #ffffff;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 24px;
+      text-decoration: none;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .download-button:hover,
+    .download-button:focus-visible {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .download-button:focus-visible {
+      outline: 3px solid rgb(29 78 216 / 30%);
+      outline-offset: 3px;
+    }
+
+    .file-details {
+      border-top: 1px solid var(--border-color);
+      font-size: 14px;
+      margin: 30px 0 0;
+      padding-top: 18px;
+    }
+
+    @media (max-width: 520px) {
+      .download-panel { padding: 32px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="download-panel">
+    <p class="brand-label">GridSense AI</p>
+    <h1 class="page-title">Development Plan</h1>
+    <p class="page-description">Download the complete 15-phase roadmap for the intelligent electricity demand and peak-load forecasting system.</p>
+    <a class="download-button" href="/gridsense-ai-development-plan.pdf" download="gridsense-ai-development-plan.pdf">Download PDF</a>
+    <p class="file-details">PDF · 15 development phases · MVP sequence · AI, testing, security, and deployment guidance</p>
+  </main>
+</body>
+</html>

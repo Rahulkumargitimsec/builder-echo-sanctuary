@@ -1,0 +1,13 @@
+{
+  "name": "gridsense-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GridSense AI development plan download page",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
