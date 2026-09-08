@@ -14,11 +14,26 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS dataset_imports (
+    id SERIAL PRIMARY KEY,
+    dataset_name VARCHAR(120) NOT NULL,
+    version INTEGER NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    row_count INTEGER NOT NULL,
+    valid_rows INTEGER NOT NULL,
+    invalid_rows INTEGER NOT NULL,
+    uploaded_by VARCHAR(64) NOT NULL REFERENCES users(id),
+    uploaded_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (dataset_name, version)
+);
+
 CREATE TABLE IF NOT EXISTS historical_load (
     id SERIAL PRIMARY KEY,
     recorded_at TIMESTAMPTZ NOT NULL,
     demand_mw DOUBLE PRECISION NOT NULL,
     source VARCHAR(80) NOT NULL DEFAULT 'manual',
+    import_id INTEGER REFERENCES dataset_imports(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 

@@ -30,6 +30,29 @@ class DatasetQualityResponse(BaseModel):
     missing_demand_records: int
 
 
+class DatasetImportResponse(BaseModel):
+    id: int
+    dataset_name: str
+    version: int
+    file_name: str
+    status: str
+    row_count: int
+    valid_rows: int
+    invalid_rows: int
+    uploaded_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+
+class DatasetPreviewResponse(BaseModel):
+    file_name: str
+    columns: list[str]
+    sample_rows: list[dict[str, str]]
+    row_count: int
+    valid_rows: int
+    invalid_rows: int
+    errors: list[str]
+
+
 class ForecastSummary(BaseModel):
     forecast_for: datetime
     demand_mw: float

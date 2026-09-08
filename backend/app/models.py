@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .database import Base
@@ -32,6 +32,22 @@ class User(Base):
     role: Mapped[Role] = relationship(back_populates="users")
 
 
+class DatasetImport(Base):
+    __tablename__ = "dataset_imports"
+    __table_args__ = (UniqueConstraint("dataset_name", "version"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    dataset_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    version: Mapped[int] = mapped_column(Integer, nullable=False)
+    file_name: Mapped[str] = mapped_column(String(255), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False)
+    row_count: Mapped[int] = mapped_column(Integer, nullable=False)
+    valid_rows: Mapped[int] = mapped_column(Integer, nullable=False)
+    invalid_rows: Mapped[int] = mapped_column(Integer, nullable=False)
+    uploaded_by: Mapped[str] = mapped_column(ForeignKey("users.id"), nullable=False)
+    uploaded_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
+
+
 class HistoricalLoad(Base):
     __tablename__ = "historical_load"
 
@@ -39,6 +55,7 @@ class HistoricalLoad(Base):
     recorded_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True, nullable=False)
     demand_mw: Mapped[float]
     source: Mapped[str] = mapped_column(String(80), default="manual", nullable=False)
+    import_id: Mapped[int | None] = mapped_column(ForeignKey("dataset_imports.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
 
 
