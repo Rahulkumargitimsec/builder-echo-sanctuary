@@ -31,11 +31,11 @@ export function ModulePage({ eyebrow, title, description, cards, sectionTitle, s
         </div>
         {actionLabel && actionHref && <Link className="primary-button" href={actionHref}>{actionLabel}</Link>}
       </div>
-      <div className="metric-grid">
+      {cards.length > 0 && <div className="metric-grid">
         {cards.map((card) => <article className={`metric-card metric-card-${card.tone || 'blue'}`} key={card.label}><p>{card.label}</p><strong>{card.value}</strong><span>{card.detail}</span></article>)}
-      </div>
+      </div>}
       <section className="content-panel">
-        <div className="panel-heading"><div><h2>{sectionTitle}</h2><p>{sectionDescription}</p></div><span className="panel-badge">Phase 1 view</span></div>
+        <div className="panel-heading"><div><h2>{sectionTitle}</h2><p>{sectionDescription}</p></div><span className="panel-badge">Live API view</span></div>
         {children || <div className="empty-state"><span className="empty-state-marker">GS</span><h3>Workspace ready</h3><p>This module has its navigation, layout, and first-screen state in place for the next data integration phase.</p></div>}
       </section>
     </AppShell>

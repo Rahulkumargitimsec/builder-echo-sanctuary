@@ -64,3 +64,87 @@ class HealthResponse(BaseModel):
     status: str
     service: str
     database: str
+
+
+class ForecastPointResponse(BaseModel):
+    forecast_for: datetime
+    demand_mw: float
+    confidence: float = Field(ge=0, le=1)
+
+
+class ForecastHorizonResponse(BaseModel):
+    model_name: str
+    horizon: int
+    forecasts: list[ForecastPointResponse]
+    metrics: dict[str, float]
+    data_points: int
+    last_observed_at: datetime
+    last_observed_demand_mw: float
+    used_fallback: bool
+    cadence_minutes: int
+
+
+class ForecastSummaryResponse(BaseModel):
+    model_name: str
+    next_forecast: ForecastPointResponse
+    metrics: dict[str, float]
+    data_points: int
+    last_observed_at: datetime
+    last_observed_demand_mw: float
+    used_fallback: bool
+
+
+class PeakPredictionResponse(BaseModel):
+    model_name: str
+    peak_for: datetime
+    peak_demand_mw: float
+    horizon: int
+    confidence: float = Field(ge=0, le=1)
+    metrics: dict[str, float]
+    used_fallback: bool
+
+
+class AlertResponse(BaseModel):
+    id: int
+    title: str
+    severity: str
+    message: str
+    acknowledged: bool
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ModelTrainingRequest(BaseModel):
+    model_name: str = Field(default="weighted_ensemble", min_length=1, max_length=80)
+
+
+class ModelRunResponse(BaseModel):
+    id: int
+    model_name: str
+    algorithm: str
+    status: str
+    metrics: dict[str, float]
+    data_points: int
+    trained_at: datetime
+    created_by: str
+
+
+class TrainingLogResponse(BaseModel):
+    id: int
+    model_run_id: int
+    level: str
+    message: str
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ModelComparisonItem(BaseModel):
+    model_name: str
+    metrics: dict[str, float]
+    forecast_demand_mw: float
+
+
+class ModelComparisonResponse(BaseModel):
+    models: list[ModelComparisonItem]
+    data_points: int
+    used_fallback: bool

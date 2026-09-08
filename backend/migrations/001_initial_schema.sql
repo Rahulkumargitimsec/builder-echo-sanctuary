@@ -76,3 +76,26 @@ CREATE TABLE IF NOT EXISTS alerts (
     acknowledged BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS model_runs (
+    id SERIAL PRIMARY KEY,
+    model_name VARCHAR(80) NOT NULL,
+    algorithm VARCHAR(80) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    metrics_json TEXT NOT NULL DEFAULT '{}',
+    data_points INTEGER NOT NULL DEFAULT 0,
+    trained_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by VARCHAR(64) NOT NULL REFERENCES users(id)
+);
+
+CREATE INDEX IF NOT EXISTS model_runs_trained_at_idx ON model_runs (trained_at);
+
+CREATE TABLE IF NOT EXISTS training_logs (
+    id SERIAL PRIMARY KEY,
+    model_run_id INTEGER NOT NULL REFERENCES model_runs(id),
+    level VARCHAR(20) NOT NULL DEFAULT 'info',
+    message TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS training_logs_model_run_id_idx ON training_logs (model_run_id);
