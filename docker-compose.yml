@@ -16,6 +16,9 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://gridsense:gridsense@database:5432/gridsense
       APP_ENV: development
+      JWT_SECRET: ${JWT_SECRET:-change-this-development-secret}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
     ports:
       - "8000:8000"
     depends_on:
