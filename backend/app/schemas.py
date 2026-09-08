@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -148,3 +149,114 @@ class ModelComparisonResponse(BaseModel):
     models: list[ModelComparisonItem]
     data_points: int
     used_fallback: bool
+
+
+class ExplanationRequest(BaseModel):
+    model_name: str = Field(default="weighted_ensemble", min_length=1, max_length=80)
+    horizon: int = Field(default=1, ge=1, le=168)
+
+
+class ExplainabilityResponse(BaseModel):
+    id: int
+    prediction_id: int
+    model_name: str
+    forecast_for: datetime
+    predicted_demand_mw: float
+    feature_contributions: dict[str, float]
+    explanation: str
+    created_by: str
+    created_at: datetime
+
+
+class RecommendationCreate(BaseModel):
+    category: str = Field(min_length=1, max_length=60)
+    priority: Literal["low", "medium", "high", "critical"] = "medium"
+    action: str = Field(min_length=1, max_length=2000)
+    expected_reduction_mw: float | None = Field(default=None, ge=0)
+    expected_savings: float | None = Field(default=None, ge=0)
+    time_window: str = Field(min_length=1, max_length=120)
+    confidence: float = Field(default=0.5, ge=0, le=1)
+    reason: str = Field(min_length=1, max_length=2000)
+
+
+class RecommendationStatusUpdate(BaseModel):
+    status: Literal["open", "accepted", "rejected", "completed"]
+
+
+class RecommendationResponse(RecommendationCreate):
+    id: int
+    status: str
+    created_by: str
+    created_at: datetime
+    updated_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ReportGenerateRequest(BaseModel):
+    type: Literal["forecast", "recommendations", "model_comparison", "audit"] = "forecast"
+    format: Literal["json", "csv"] = "json"
+    horizon: int = Field(default=24, ge=1, le=168)
+    model_name: str = Field(default="weighted_ensemble", min_length=1, max_length=80)
+
+
+class ReportResponse(BaseModel):
+    id: int
+    type: str
+    format: str
+    status: str
+    generated_by: str
+    created_at: datetime
+    content: str
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ExperimentCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    dataset_version: str | None = Field(default=None, max_length=80)
+    parameters: dict[str, str | int | float | bool] = Field(default_factory=dict)
+
+
+class ResearchResultResponse(BaseModel):
+    id: int
+    experiment_id: int
+    model_name: str
+    metrics: dict[str, float]
+    reproducibility: dict[str, str | int | float | bool]
+    created_at: datetime
+
+
+class ExperimentResponse(BaseModel):
+    id: int
+    name: str
+    dataset_version: str | None
+    parameters: dict[str, str | int | float | bool]
+    status: str
+    created_by: str
+    created_at: datetime
+    results: list[ResearchResultResponse] = Field(default_factory=list)
+
+
+class AuditLogResponse(BaseModel):
+    id: int
+    actor_id: str | None
+    action: str
+    resource_type: str
+    resource_id: str | None
+    details: dict[str, object]
+    created_at: datetime
+
+
+class AdminUserResponse(UserSummary):
+    is_active: bool
+    created_at: datetime
+
+
+class SystemSettingResponse(BaseModel):
+    key: str
+    value: str
+    updated_by: str
+    updated_at: datetime
+
+
+class SystemSettingUpdate(BaseModel):
+    value: str = Field(max_length=4000)

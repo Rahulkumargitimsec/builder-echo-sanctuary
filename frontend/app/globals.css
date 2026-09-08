@@ -235,6 +235,42 @@ a { color: inherit; }
 .training-result { background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 9px; color: #276749; margin-bottom: 18px; padding: 18px; }
 .training-result h3 { color: #22543d; margin: 0 0 8px; text-transform: capitalize; }
 .training-result p:last-child { font-size: 13px; margin: 0; }
+.explanation-summary { background: #102a43; border-radius: 10px; color: #ffffff; margin-bottom: 18px; padding: 24px; }
+.explanation-summary p:not(.eyebrow) { color: #d9e2ec; line-height: 1.7; margin: 0 0 18px; }
+.explanation-summary span { color: #68d391; font-size: 11px; }
+.contribution-grid { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); }
+.contribution-card { background: #f7faff; border: 1px solid #d9e2ec; border-radius: 8px; display: grid; gap: 6px; padding: 16px; }
+.contribution-card span { color: #627d98; font-size: 11px; text-transform: capitalize; }
+.contribution-card strong { color: #1d4ed8; font-size: 22px; }
+.contribution-card small, .recommendation-card small, .experiment-card span { color: #829ab1; font-size: 11px; }
+.recommendation-list, .experiment-list, .report-list, .admin-section { display: grid; gap: 12px; }
+.recommendation-card, .experiment-card, .admin-section { background: #ffffff; border: 1px solid #d9e2ec; border-radius: 10px; padding: 20px; }
+.recommendation-heading, .report-row, .admin-user-row, .audit-row, .setting-row { align-items: center; display: flex; gap: 16px; justify-content: space-between; }
+.recommendation-heading { margin-bottom: 12px; }
+.recommendation-card h3, .experiment-card h3 { color: #102a43; font-size: 16px; margin: 0 0 8px; text-transform: capitalize; }
+.recommendation-card p { color: #486581; font-size: 13px; line-height: 1.6; margin: 0 0 10px; }
+.recommendation-card select { background: #ffffff; border: 1px solid #bcccdc; border-radius: 6px; color: #486581; font-size: 11px; margin-top: 15px; padding: 8px; text-transform: capitalize; }
+.recommendation-priority, .recommendation-status { border-radius: 12px; font-size: 10px; font-weight: 700; padding: 5px 8px; text-transform: capitalize; }
+.recommendation-status { background: #eaf2ff; color: #1d4ed8; margin-left: auto; }
+.priority-high, .priority-critical { background: #fff5f5; color: #c53030; }
+.priority-medium { background: #fffaf0; color: #975a16; }
+.priority-low { background: #f0fff4; color: #276749; }
+.report-row { border: 1px solid #d9e2ec; border-radius: 8px; padding: 16px; }
+.report-row strong, .report-row span, .admin-user-row strong, .admin-user-row span, .audit-row strong, .audit-row span { display: block; }
+.report-row strong, .admin-user-row strong, .audit-row strong { color: #102a43; font-size: 13px; text-transform: capitalize; }
+.report-row span, .admin-user-row span, .audit-row span { color: #829ab1; font-size: 11px; margin-top: 5px; }
+.experiment-card { display: grid; gap: 15px; }
+.experiment-results { display: flex; flex-wrap: wrap; gap: 10px; }
+.experiment-results span { background: #f7faff; border-radius: 7px; display: grid; gap: 5px; padding: 10px; }
+.experiment-results strong { color: #102a43; font-size: 11px; text-transform: capitalize; }
+.experiment-results small { color: #1d4ed8; font-size: 10px; }
+.admin-section { padding: 20px; }
+.admin-user-list, .audit-list, .settings-list { display: grid; gap: 10px; }
+.admin-user-row, .audit-row { border-bottom: 1px solid #e6eef7; padding: 11px 0; }
+.admin-user-row:last-child, .audit-row:last-child { border-bottom: 0; }
+.setting-row { border-bottom: 1px solid #e6eef7; padding: 11px 0; }
+.setting-row label { color: #486581; display: grid; font-size: 12px; gap: 7px; width: 100%; }
+.setting-row input, .workspace-toolbar input { border: 1px solid #bcccdc; border-radius: 6px; color: #102a43; font: inherit; padding: 9px; }
 
 @media (max-width: 980px) {
   .landing-hero { gap: 40px; grid-template-columns: 1fr; padding-top: 55px; }
@@ -242,6 +278,7 @@ a { color: inherit; }
   .feature-grid, .technology-grid { grid-template-columns: 1fr; }
   .ai-engine-section, .contact-section, .dataset-upload-grid, .operations-grid { grid-template-columns: 1fr; }
   .forecast-health-list { grid-template-columns: repeat(2, 1fr); }
+  .contribution-grid { grid-template-columns: repeat(2, 1fr); }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -286,4 +323,6 @@ a { color: inherit; }
   .workspace-toolbar { align-items: stretch; flex-direction: column; }
   .workspace-toolbar label, .workspace-toolbar select, .workspace-toolbar button { width: 100%; }
   .peak-assessment { grid-template-columns: 1fr; }
+  .contribution-grid { grid-template-columns: 1fr 1fr; }
+  .recommendation-heading, .report-row, .admin-user-row, .audit-row { align-items: flex-start; flex-direction: column; }
 }
